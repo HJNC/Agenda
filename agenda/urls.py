@@ -15,7 +15,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.contrib import admin
+from django.urls import path #caminhos
+from core import views #pagina
+from django.views.generic import RedirectView #redireciona a pagina inicial
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('agenda/',views.lista_eventos),
+    path('', RedirectView.as_view(url='/agenda')), #nao dar erro quando tiver vazio
+    path('login/', views.login_user),
+    path('login/submit', views.submit_login),
+    path('logout/', views.logout_user)
+
+
 ]

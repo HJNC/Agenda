@@ -20,6 +20,8 @@ class Evento(models.Model):
     #grava a data e hora automaticamente
     data_criacao= models.DateTimeField(auto_now=True, verbose_name='Data de criação')
 
+    #Local=models.CharField(max_length=50)
+
     #criando o usuario
     #se o usuario for deletado, apaga-se todos os dados
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -31,3 +33,6 @@ class Evento(models.Model):
     #titulo do lembrete
     def __str__(self):
             return self.titulo
+
+    def get_data_evento(self):
+        return self.data_evento.strftime('%d/%m/%Y  %H:%m')
