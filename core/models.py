@@ -11,6 +11,7 @@ from django.contrib.auth.models import User
 class Evento(models.Model):
     #Vai ser depositados os caracteres no banco de dados, max_length é o tamanho maximo de caracteres
     titulo= models.CharField(max_length=100)
+    local_evento = models.CharField(max_length=100)
 
     #aceita ficar em branco ou ser nulo
     descricao= models.TextField(blank=True, null=True)
@@ -36,3 +37,5 @@ class Evento(models.Model):
 
     def get_data_evento(self):
         return self.data_evento.strftime('%d/%m/%Y  %H:%m')
+    def get_data_input_evento(self):
+        return self.data_evento.strftime('%Y-%m-%dT%H:%M')
