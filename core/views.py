@@ -53,7 +53,24 @@ def lista_eventos(request):
     return render(request, 'agenda.html', dados)
 
 
-#def local(request, titulo_evento):
-    #Evento.objects.get(titulo= titulo_evento)
-    #return HttpResponse(f'Local:{Evento.Local}');
+#criar pagina de cadastro de eventos
 
+@login_required(login_url='/login/')
+
+def evento(request):
+    return render(request, 'evento.html')
+
+def submit_evento(request):
+    if request.POST:
+        titulo = request.POST.get('titulo')
+        data_evento = request.POST.get('data_evento')
+        descricao = request.POST.get('descricao')
+        usuario = request.user
+
+        #vai enviar os dados para o usuario
+
+        Evento.objects.create(titulo=titulo, data_evento=data_evento, descricao=descricao,
+                              usuario=usuario)
+        
+    messages.success(request,"Cadastrado com sucesso!")
+    return redirect('/')

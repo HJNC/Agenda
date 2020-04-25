@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Evento</title>
+</head>
+<body>
+<div align="center">
+   <h1>Adicione um evento</h1>
+</div>
+
+<div>
+    <form action="submit" method="post">{% csrf_token %}
+        <label>Titulo: </label><br>
+        <input type="text" name="titulo" size="23"><br>
+
+        <label>Data do evento: </label><br>
+        <input type="datetime-local" name="data_evento"><br>
+
+        <label>Descrição: </label><br>
+        <textarea name="descricao" rows="5" cols="24"></textarea><br><br>
+
+        <button type="submit">Salvar</button>
+        <a href="/">
+            <button type="button">Cancelar</button>
+        </a>
+
+    </form>
+
+    {% for message in messages %}
+            <strong>Status: </strong>{{message}}
+    {% endfor %}
+
+</div>
+
+
+</body>
+</html>
